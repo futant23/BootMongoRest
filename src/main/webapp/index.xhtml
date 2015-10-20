@@ -1,0 +1,90 @@
+<f:view xmlns="http://www.w3c.org/1999/xhtml"
+        xmlns:f="http://java.sun.com/jsf/core"
+        xmlns:h="http://java.sun.com/jsf/html"
+        xmlns:ui="http://java.sun.com/jsf/facelets"
+        xmlns:ng="http://xmlns.jcp.org/jsf/passthrough"
+        xmlns:prime="http://primefaces.org/ui">
+
+    <h:head>
+        <meta charset="utf-8" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+        <title>#{menuController.title}</title>
+        <style>
+            body {font-size:12px; }
+        </style>
+    </h:head>
+    <h:body>
+       
+
+
+        <prime:layout fullPage="true">
+
+            <prime:layoutUnit position="north" size="100" header="Top" resizable="true" closable="true" collapsible="true">
+                <h:outputText value="North unit content." />
+                <h:form>
+			<prime:panel header="What do you see here?" >
+				<div style="height:50px">
+					This is a simple PrimeFaces 5 project running on Spring Boot 1.1.4.
+				</div>
+			</prime:panel>
+			<prime:panel header="JSF 2.2 Bean Access">
+				#{helloWorldBean.hello}
+			</prime:panel>
+		</h:form>
+            </prime:layoutUnit>
+
+            <prime:layoutUnit position="south" size="100" header="Bottom" resizable="true" closable="true" collapsible="true">
+                <h:outputText value="South unit content." />
+            </prime:layoutUnit>
+
+            <prime:layoutUnit position="west" size="200" header="Left" resizable="true" closable="true" collapsible="true">
+                <h:outputText value="West unit content." />
+            </prime:layoutUnit>
+
+            <prime:layoutUnit position="east" size="200" header="Right" resizable="true" closable="true" collapsible="true" effect="drop">
+                <h:outputText value="Right unit content." />
+            </prime:layoutUnit>
+
+            <prime:layoutUnit position="center">
+                <h:form id="form">
+                    <prime:growl id="msgs" showDetail="true" />
+
+                    <f:facet name="header">
+                        List of Employees
+                    </f:facet>
+                    <prime:dataTable value="#{employeesView.employees}" var="employee" selectionMode="single" 
+                                     selection="#{employeesView.selectedEmployee}" rowKey="#{employee.id}">
+
+                        <prime:ajax event="rowSelect" listener="#{employeesView.onRowSelect}"  update=":form:msgs" />
+                        <prime:ajax event="rowUnselect" listener="#{employeesView.onRowUnselect}"  update=":form:msgs" />
+                        <prime:column>
+                            <f:facet name="header">
+                                <h:outputText value="Employee Id"></h:outputText>
+                            </f:facet>
+                            <h:outputText value="#{employee.id}"></h:outputText>
+                        </prime:column>
+                        <prime:column>
+                            <f:facet name="header">
+                                <h:outputText value="Employee First Name"></h:outputText>
+                            </f:facet>
+                            <h:outputText value="#{employee.firstName}"></h:outputText>
+                        </prime:column>
+                        <prime:column>
+                            <f:facet name="header">
+                                <h:outputText value="Employee Last Name"></h:outputText>
+                            </f:facet>
+                            <h:outputText value="#{employee.lastName}"></h:outputText>
+                        </prime:column>
+
+                    </prime:dataTable>
+                </h:form>
+
+            </prime:layoutUnit>
+
+        </prime:layout>
+
+
+
+
+    </h:body>
+</f:view>
