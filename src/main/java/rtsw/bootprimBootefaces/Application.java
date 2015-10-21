@@ -62,7 +62,8 @@ public class Application  extends SpringBootServletInitializer implements Comman
 
         repository.deleteAll();
 
-        for (int i = 0; i < 500; i++) {
+        for (int i = 0; i < 1000; i++) {
+            log.info(String.valueOf(i));
             repository.save(new Employee("Jones", "Walter"));
             repository.save(new Employee("Beetle", "Tatiana"));
             repository.save(new Employee("Barnabus", "Ethan"));
