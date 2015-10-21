@@ -21,15 +21,11 @@
 
             <prime:layoutUnit position="north" size="100" header="Top" resizable="true" closable="true" collapsible="true">
                 <h:outputText value="North unit content." />
-                <h:form>
-			<prime:panel header="What do you see here?" >
-				<div style="height:50px">
-					This is a simple PrimeFaces 5 project running on Spring Boot 1.1.4.
-				</div>
-			</prime:panel>
-			<prime:panel header="JSF 2.2 Bean Access">
-				#{helloWorldBean.hello}
-			</prime:panel>
+                <h:form id="text">
+                   <h:outputText value="Selected Employee: " />
+                    <h:outputText id="out" value="#{employeesView.selectedEmployee.firstName}" />
+                    
+                    <prime:button outcome="second" value="Navigate" />
 		</h:form>
             </prime:layoutUnit>
 
@@ -39,6 +35,7 @@
 
             <prime:layoutUnit position="west" size="200" header="Left" resizable="true" closable="true" collapsible="true">
                 <h:outputText value="West unit content." />
+                <prime:editor />
             </prime:layoutUnit>
 
             <prime:layoutUnit position="east" size="200" header="Right" resizable="true" closable="true" collapsible="true" effect="drop">
@@ -55,7 +52,7 @@
                     <prime:dataTable value="#{employeesView.employees}" var="employee" selectionMode="single" 
                                      selection="#{employeesView.selectedEmployee}" rowKey="#{employee.id}">
 
-                        <prime:ajax event="rowSelect" listener="#{employeesView.onRowSelect}"  update=":form:msgs" />
+                        <prime:ajax event="rowSelect" listener="#{employeesView.onRowSelect}"  update=":form:msgs, :text:out" />
                         <prime:ajax event="rowUnselect" listener="#{employeesView.onRowUnselect}"  update=":form:msgs" />
                         <prime:column>
                             <f:facet name="header">

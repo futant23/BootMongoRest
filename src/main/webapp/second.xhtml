@@ -1,0 +1,66 @@
+<f:view xmlns="http://www.w3c.org/1999/xhtml"
+        xmlns:f="http://java.sun.com/jsf/core"
+        xmlns:h="http://java.sun.com/jsf/html"
+        xmlns:ui="http://java.sun.com/jsf/facelets"
+        xmlns:ng="http://xmlns.jcp.org/jsf/passthrough"
+        xmlns:prime="http://primefaces.org/ui">
+
+    <h:head>
+        <meta charset="utf-8" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+        <title>#{menuController.title}</title>
+        <style>
+            body {font-size:12px; }
+        </style>
+    </h:head>
+    <h:body>
+
+
+
+        <prime:layout fullPage="true">
+
+            <prime:layoutUnit position="north" size="100" header="Top" resizable="true" closable="true" collapsible="true">
+                <h:outputText value="North unit content." />
+                <prime:button outcome="index" value="Navigate" />
+            </prime:layoutUnit>
+
+<!--            <prime:layoutUnit position="south" size="150" header="Bottom" resizable="true" closable="true" collapsible="true">
+                <h:outputText value="South unit content." />
+
+               
+            </prime:layoutUnit>-->
+
+            <prime:layoutUnit position="west" size="200" header="Left" resizable="true" closable="true" collapsible="true">
+                <h:outputText value="West unit content." />
+<!--                <prime:editor />-->
+            </prime:layoutUnit>
+
+            <prime:layoutUnit position="east" size="200" header="Right" resizable="true" closable="true" collapsible="true" effect="drop">
+                <h:outputText value="Right unit content." />
+            </prime:layoutUnit>
+
+            <prime:layoutUnit position="center">
+                <h:form>
+                    <prime:panel header="What do you see here?" >
+                        <div style="height:50px">
+                            This is a simple PrimeFaces 5 project running on Spring Boot 1.1.4.
+                        </div>
+                    </prime:panel>
+                    <prime:panel header="JSF 2.2 Bean Access">
+                        #{helloWorldBean.hello}
+                    </prime:panel>
+                </h:form>
+
+            </prime:layoutUnit>
+
+        </prime:layout>
+
+
+         <prime:dock position="bottom">
+                    <prime:menuitem value="Edit"        icon="../images/edit.png" url="#"/>
+                    <prime:menuitem value="Find"        icon="../images/find.png" url="#"/>
+                    <prime:menuitem value="History"     icon="../images/history.png" url="#"/>
+                    <prime:menuitem value="Run"         icon="../images/run.png" url="#"/>
+                </prime:dock>
+    </h:body>
+</f:view>
